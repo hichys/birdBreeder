@@ -16,12 +16,12 @@ namespace ba {
 
 
     public:
-        bird(const int & id,const std::string name,const Date& DatePorn ,const ba::type &  ,const BirdCycle &);
+        bird(const int & id, std::string name,const Date& DatePorn ,const ba::type &  ,const BirdCycle &);
 
 
 
-        std::string getType() noexcept ;
-        std::string whatCycle() noexcept ;
+        std::string getType()   const noexcept ;
+        std::string whatCycle() const noexcept ;
 
         int getId_() const;
         void setId_(int id_);
@@ -37,6 +37,9 @@ namespace ba {
 
         BirdCycle getCycle() const;
         void setCycle(BirdCycle cycle);
+
+        //operator overloads
+
 
     private:
           int id_;

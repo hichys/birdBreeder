@@ -5,7 +5,7 @@
 #include <string>
 #include "../include/bird.h"
 
-std::string ba::bird::getType()   noexcept {
+  std::string ba::bird::getType() const  noexcept {
     switch (this->type_){
         case ba::type::male:
             return "Male";
@@ -21,13 +21,14 @@ std::string ba::bird::getType()   noexcept {
 ba::bird::bird(const int& id, const std::string name, const Date& bd ,
                const ba::type& type,const BirdCycle & cycle)
 
-        :id_(id),name_(std::move(name)),birthday(bd),type_(type),cycle(cycle)
+        :id_(id),name_(name),birthday(bd),type_(type),cycle(cycle)
 {
-        Date currentDate{};
+        ++birthday.tm.tm_mon;
+        Date currentDate;
         this->age_ = diff(this->birthday,currentDate);
 }
 
-std::string ba::bird::whatCycle() noexcept {
+  std::string ba::bird::whatCycle() const noexcept {
 
     switch (this->cycle){
         //    chick, moulting , pairing, nestting , layyingEgg , hatching, feedingChicks,  ioslating
@@ -102,3 +103,5 @@ ba::BirdCycle ba::bird::getCycle() const {
 void ba::bird::setCycle(ba::BirdCycle cycle) {
     bird::cycle = cycle;
 }
+
+
