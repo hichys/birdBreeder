@@ -18,7 +18,7 @@
     }
 
 }
-ba::bird::bird(const int& id, const std::string name, const Date& bd ,
+ba::bird::bird(const int& id, const std::string &name, const Date& bd ,
                const ba::type& type,const BirdCycle & cycle)
 
         :id_(id),name_(name),birthday(bd),type_(type),cycle(cycle)
@@ -57,7 +57,12 @@ ba::bird::bird(const int& id, const std::string name, const Date& bd ,
         case ba::BirdCycle::ioslating:{
             return "isolating";
         }
-
+        case ba::BirdCycle ::sick:{
+            return "sick";
+        }
+        case ba::BirdCycle::healthy:{
+            return "healthy";
+        }
         default: {
             return  "unknown";
         }

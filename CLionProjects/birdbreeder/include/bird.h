@@ -16,7 +16,7 @@ namespace ba {
 
 
     public:
-        bird(const int & id, std::string name,const Date& DatePorn ,const ba::type &  ,const BirdCycle &);
+        bird(const int & id, const std::string& name,const Date& DatePorn ,const ba::type &  ,const BirdCycle &);
 
 
 
