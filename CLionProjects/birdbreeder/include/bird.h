@@ -6,15 +6,17 @@
 #define BIRDBREEDER_BIRD_H
 
 #include <string>
-#include "../include/type.h"
-#include "../include/status.h"
+#import "type.h"
+#import "status.h"
+#import "Date.hh"
+
 namespace ba {
 
     class bird {
 
 
     public:
-        bird(const int &,const std::string &,const int & ,const ba::type & ,const BirdCycle &);
+        bird(const int & id,const std::string name,const Date& DatePorn ,const ba::type &  ,const BirdCycle &);
 
 
 
@@ -27,7 +29,7 @@ namespace ba {
         const std::string &getName_() const;
         void setName_(const std::string &name_);
 
-        int getAge_() const;
+        double getAge_() const;
         void setAge_(int age_);
 
         type getType_() const;
@@ -39,9 +41,10 @@ namespace ba {
     private:
           int id_;
           std::string name_{};
-          int age_;
+          Date birthday;
           ba::type type_;
           BirdCycle cycle;
+          double age_;
 
     };
 }

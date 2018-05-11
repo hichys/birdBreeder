@@ -18,10 +18,13 @@ std::string ba::bird::getType()   noexcept {
     }
 
 }
-ba::bird::bird(const int& id, const std::string& name, const int& age , const ba::type& type,const BirdCycle & cycle)
-:id_(id),name_(name),age_(age),type_(type),cycle(cycle)
-{
+ba::bird::bird(const int& id, const std::string name, const Date& bd ,
+               const ba::type& type,const BirdCycle & cycle)
 
+        :id_(id),name_(std::move(name)),birthday(bd),type_(type),cycle(cycle)
+{
+        Date currentDate{};
+        this->age_ = diff(this->birthday,currentDate);
 }
 
 std::string ba::bird::whatCycle() noexcept {
@@ -47,15 +50,15 @@ std::string ba::bird::whatCycle() noexcept {
         case ba::BirdCycle::hatching:{
             return "hatching";
         }
-        case ba::BirdCycle::feedingChicks:{
-            return "feedingChicks";
+        case ba::BirdCycle::raisingChicks:{
+            return "raising Chicks";
         }
         case ba::BirdCycle::ioslating:{
             return "isolating";
         }
 
         default: {
-            return  "unkown";
+            return  "unknown";
         }
     }
 }
@@ -76,7 +79,7 @@ void ba::bird::setName_(const std::string &name_) {
     bird::name_ = name_;
 }
 
-int ba::bird::getAge_() const {
+double ba::bird::getAge_() const {
     return age_;
 }
 
