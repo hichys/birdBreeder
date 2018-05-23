@@ -27,11 +27,7 @@ public:
 
     Date(std::string date, std::string time);
 
-    void currentDateTime() {
-        std::put_time(&tm, "%D");
-        this->tm.tm_mon++;
-        this->tm.tm_year +=1900;
-    }
+    void currentDateTime();
 
     friend std::ostream&  operator<<(std::ostream &os,const Date &date);
     std::string date_;
@@ -41,7 +37,7 @@ public:
 
 };
 
-double diff( Date& date_ , Date& date2_ ) ;
+double DateDiff(Date &date_, Date &date2_) ;
 
 
 
