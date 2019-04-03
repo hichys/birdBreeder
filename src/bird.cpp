@@ -4,6 +4,28 @@
 
 #include <string>
 #include "../include/bird.h"
+/*
+ *
+template<typename... ArgTypes>
+inline void print(ArgTypes... args)
+{
+    // trick to expand variadic argument pack without recursion
+    using expand_variadic_pack = int[];
+    // first zero is to prevent empty braced-init-list
+    // void() is to prevent overloaded operator, messing things up
+    // trick is to use the side effect of list-initializer to call a function
+    // on every argument.
+    // (void) is to suppress "statement has no effect" warnings
+    (void)expand_variadic_pack{0, ((std::cout << args), void(), 0)... };
+}
+
+#ifndef MYDEBUG
+#define debug_print(...)
+#else
+#define debug_print(...) print(__VA_ARGS__)
+#endif
+
+ */
 
   std::string ba::bird::getType() const  noexcept {
     switch (this->type_){
@@ -18,21 +40,26 @@
     }
 
 }
+
 ba::bird::bird(const int& id, const std::string &name, const Date& bd ,
                const ba::type& type,const BirdCycle & cycle)
 
         :id_(id),name_(name),birthday(bd),type_(type),cycle(cycle)
 {
+
         ++birthday.tm.tm_mon;
         Date currentDate;
-        this->age_ = diff(this->birthday,currentDate);
+        this->age_ = DateDiff(this->birthday, currentDate);
+
+
 }
 
   std::string ba::bird::whatCycle() const noexcept {
-
+/*
+ *   chick, moulting , pairing, nestting , layyingEgg , hatching, raisingChicks,  ioslating ,
+        sick , healthy,unknown
+ */
     switch (this->cycle){
-        //    chick, moulting , pairing, nestting , layyingEgg , hatching, feedingChicks,  ioslating
-
         case ba::BirdCycle::chick:{
             return "chick";
         }
@@ -40,10 +67,10 @@ ba::bird::bird(const int& id, const std::string &name, const Date& bd ,
             return "moulting";
         }
         case ba::BirdCycle::pairing:{
-            return "moulting";
+            return "pairing";
         }
         case ba::BirdCycle::nestting:{
-            return "moulting";
+            return "nesting";
         }
         case ba::BirdCycle::layyingEgg:{
             return "layyingEgg";
@@ -107,6 +134,22 @@ ba::BirdCycle ba::bird::getCycle() const {
 
 void ba::bird::setCycle(ba::BirdCycle cycle) {
     bird::cycle = cycle;
+}
+
+ba::bird *ba::bird::getPairedWith() const {
+    return pairedWith;
+}
+
+void ba::bird::setPairedWith(ba::bird *pairedWith) {
+    bird::pairedWith = pairedWith;
+}
+
+const Date &ba::bird::getBirthday() const {
+    return birthday;
+}
+
+void ba::bird::setBirthday(const Date &birthday) {
+    bird::birthday = birthday;
 }
 
 
